@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge;" />
+
+        <title>@ViewBag.Title</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        
+        @Styles.Render("~/Content/css")
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/signalr")
+
+        <script src="~/signalr/hubs"></script>
+        @Scripts.Render("~/bundles/sitechat")
+
+    </head>
+    <body>
+
+        <header>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    @* Logo *@
+                </div>
+            </div>
+        </header>
+
+        <div id="body">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper">
+                @RenderBody()
+            </section>
+        </div>
+
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year - <a href="http://www.bleddynrichards.co.uk" target="_blank">BleddynRichards.co.uk</a></p>
+                </div>
+            </div>
+        </footer>
+
+        @RenderSection("scripts", required: false)
+
+    </body>
+</html>

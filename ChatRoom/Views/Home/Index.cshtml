@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "SignalR - Chat Room";
+}
+
+@section featured {
+
+}
+
+<div class="main-container">
+
+    <div id="header">
+        <h2>@ViewBag.Title</h2>
+        <img src="Images/settings.png" height="25" width="25" class="settings" />
+    </div>
+
+    <div id="content">
+
+        @* Login Window *@
+        <div class="login">
+            Your Name:<br/>
+            <input id="txtUserName" type="text"/>
+            <input id="btnStartChat" type="button" value=""/>
+        </div>
+
+        @* Main Chat Window *@
+        <div class="chat-room">
+
+            <div class="title">
+                Welcome to the chat room <span id='lblUserName'></span>
+            </div>
+
+            <div class="content">
+                <div class="chat-window"></div>
+                <ul class="users">
+                </ul>
+            </div>
+
+            <div class="message-bar">
+                <input id="txtMessage" type="text" />
+                <input id="btnSendMessage" type="button" value="" />
+            </div>
+
+        </div>
+
+    </div>
+
+    <audio id="audioConnected" src="Content/Audio/shimmer.wav" preload="auto"></audio>
+    <audio id="audioMessage" src="Content/Audio/piano_chord.wav" preload="auto"></audio>
+    @*<audio id="multiaudio1" src="Content/Audio/flute_c_long_01.wav" preload="auto"></audio>
+    <audio id="multiaudio3" src="Content/Audio/synth_vox.wav" preload="auto"></audio>
+    <audio id="multiaudio5" src="Content/Audio/sweep.wav" preload="auto"></audio>*@
+
+    <input id="hdId" type="hidden" />
+    <input id="hdUserName" type="hidden" />
+
+</div>
+
+<div class="settings-menu hide-by-default">
+    <ul>
+        <li>
+            <input id="chkDisplayDateTime" type="checkbox" title="Display Date and Time" />
+            <label for="chkDisplayDateTime">Display Date and Time</label>
+        </li>
+        <li>
+            <input id="chkDisplayStatusMessage" type="checkbox" title="Display Status Messages" />
+            <label for="chkDisplayStatusMessage">Display Status Messages</label>
+        </li>
+        <li>
+            <input id="chkPlayNotificationAudio" type="checkbox" title="Play Audio" />
+            <label for="chkPlayNotificationAudio">Play Audio</label>
+        </li>
+    </ul>
+</div>
+
+<script>
+    $(function () {
+
+        // set settings values before we wire up the change events
+        document.getElementById("chkDisplayDateTime").checked = GCChat.Storage.GetDisplayDateTime();
+        document.getElementById("chkDisplayStatusMessage").checked = GCChat.Storage.GetDisplayStatusMessage();
+        document.getElementById("chkPlayNotificationAudio").checked = GCChat.Storage.GetPlayNotificationAudio();
+
+        GCChat.Storage.Init();
+        GCChat.Init();
+    });
+</script>
